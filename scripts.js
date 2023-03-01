@@ -41,13 +41,23 @@ defaults.addEventListener('change', function() {
 });
 
 calculate.addEventListener('click', function() {
-    var shotsTotalTime = shotsNeeded.value * shotsTime.value;
-    var videosTotalTime = videosNeeded.value * videosTime.value;
-    var threeSixtiesTotalTime = threeSixtiesNeeded.value * threeSixtiesTime.value;
+    // var shotsTotalTime = shotsNeeded.value * shotsTime.value;
+    var shotsTotalTime = calcTime(shotsNeeded.value * shotsTime.value, shotsTime.value);
+    console.log('It will take ' + shotsTotalTime + ' to shoot ' + (shotsNeeded.value) + ' shots.');
 
-    calcTime(shotsTotalTime);
-    calcTime(videosTotalTime);
-    calcTime(threeSixtiesTotalTime);
+    var videosTotalTime = calcTime(videosNeeded.value * videosTime.value, videosTime.value);
+    console.log('It will take ' + videosTotalTime + ' to shoot ' + (videosNeeded.value) + ' shots.');
+
+    var threeSixtiesTotalTime = calcTime(threeSixtiesNeeded.value * threeSixtiesTime.value, threeSixtiesTime.value);
+    console.log('It will take ' + threeSixtiesTotalTime + ' to shoot ' + (threeSixtiesNeeded.value) + ' shots.');
+
+    var allTimesAdded = (shotsNeeded.value * shotsTime.value) + (videosNeeded.value * videosTime.value) + (threeSixtiesNeeded.value * threeSixtiesTime.value)
+    
+    var totalTotalTime = calcTime(allTimesAdded, 1)
+    console.log('It will take ' + totalTotalTime + ' to complete this project.');
+    
+    console.log('');
+
 
 
 
@@ -63,20 +73,16 @@ calculate.addEventListener('click', function() {
 
 
 
-
-
-
-
 function calcTime(totalTime) {
     const workHoursPerDay = 7;
-    const workDaysPerWeek = 5;
+    // const workDaysPerWeek = 5;
     const myHour = 60;
     const myDay = myHour * workHoursPerDay;
-    const myWeek = myDay * workDaysPerWeek;
+    // const myWeek = myDay * workDaysPerWeek;
 
-    if (totalTime <= myHour) {
+    if (totalTime < myHour) {
         var segment = "minutes(s)";
-    } else if (totalTime > myHour && totalTime < myDay) {
+    } else if (totalTime >= myHour && totalTime < myDay) {
         var segment = "hours(s)";
         totalTime /= myHour;
     } else if (totalTime > myDay) {
@@ -85,8 +91,7 @@ function calcTime(totalTime) {
     }
 
     totalTime = totalTime.toFixed(1);
-
-    console.log('It will take ' + totalTime + ' ' + segment + ' to shoot ' + (shotsNeeded.value) + ' shots.');
+    return  totalTime + ' ' + segment;
 }
 
 
