@@ -12,6 +12,10 @@ var videosNeeded =          document.querySelector('#videos-needed');
 var videosTime =            document.querySelector('#videos-time');
 var threeSixtiesNeeded =    document.querySelector('#three-sixties-needed');
 var threeSixtiesTime =      document.querySelector('#three-sixties-time');
+var shotsResults =          document.querySelector('#shots-results');
+var videosResults =          document.querySelector('#videos-results');
+var threeSixtiesResults =   document.querySelector('#three-sixties-results');
+var totalResults =          document.querySelector('#total-results');
 
 
 
@@ -41,24 +45,16 @@ defaults.addEventListener('change', function() {
 });
 
 calculate.addEventListener('click', function() {
-    // var shotsTotalTime = shotsNeeded.value * shotsTime.value;
-    var shotsTotalTime = calcTime(shotsNeeded.value * shotsTime.value, shotsTime.value);
-    console.log('It will take ' + shotsTotalTime + ' to shoot ' + (shotsNeeded.value) + ' shots.');
-
-    var videosTotalTime = calcTime(videosNeeded.value * videosTime.value, videosTime.value);
-    console.log('It will take ' + videosTotalTime + ' to shoot ' + (videosNeeded.value) + ' shots.');
-
+    var shotsTotalTime =        calcTime(shotsNeeded.value * shotsTime.value, shotsTime.value);
+    var videosTotalTime =       calcTime(videosNeeded.value * videosTime.value, videosTime.value);
     var threeSixtiesTotalTime = calcTime(threeSixtiesNeeded.value * threeSixtiesTime.value, threeSixtiesTime.value);
-    console.log('It will take ' + threeSixtiesTotalTime + ' to shoot ' + (threeSixtiesNeeded.value) + ' shots.');
+    var allTimesAdded =         (shotsNeeded.value * shotsTime.value) + (videosNeeded.value * videosTime.value) + (threeSixtiesNeeded.value * threeSixtiesTime.value)
+    var totalTotalTime =        calcTime(allTimesAdded, 1)
 
-    var allTimesAdded = (shotsNeeded.value * shotsTime.value) + (videosNeeded.value * videosTime.value) + (threeSixtiesNeeded.value * threeSixtiesTime.value)
-    
-    var totalTotalTime = calcTime(allTimesAdded, 1)
-    console.log('It will take ' + totalTotalTime + ' to complete this project.');
-    
-    console.log('');
-
-
+    shotsResults.innerHTML = 'It will take ' + shotsTotalTime + ' to shoot ' + (shotsNeeded.value) + ' shots.';
+    videosResults.innerHTML = 'It will take ' + videosTotalTime + ' to shoot ' + (shotsNeeded.value) + ' shots.';
+    threeSixtiesResults.innerHTML = 'It will take ' + threeSixtiesTotalTime + ' to shoot ' + (shotsNeeded.value) + ' shots.';
+    totalResults.innerHTML = 'It will take ' + totalTotalTime + ' to complete this project.';
 
 
 
