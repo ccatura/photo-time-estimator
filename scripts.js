@@ -26,6 +26,7 @@ defaults.addEventListener('change', function() {
         for(var i=0;i<times.length;i++) {
             times[i].disabled = true;
             setDefaultTimes();
+            updateInfo();
         }
     } else {
         for(i=0;i<times.length;i++) {
