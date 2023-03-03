@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="./styles.css">
     <script src="./scripts.js" defer></script>
 
-    <title>Photo Time Estimator</title>
+    <title>Imaging Time Estimator</title>
 </head>
 <body>
 
     <div class="wrapper">
         <div class="calc-window">
             <div class="calc-title-bar">
-                Photo Time Estimator
+                Imaging Time Estimator
             </div>
             <div class="calc-body">
                 <div class="calc-body-parent-section">
@@ -26,12 +26,12 @@
                 </div>
                 <div class="calc-body-parent-section">
                     <div class="calc-body-child-section">
-                        <p>Shots needed</p>
-                        <input type="number" min="0" id="shots-needed">
+                        <p>SKUs needed</p>
+                        <input type="number" min="0" id="skus-needed">
                     </div>
                     <div class="calc-body-child-section">
-                        <p>Minutes per shot</p>
-                        <input type="number" min="0" id="shots-time" disabled class="times">
+                        <p>Minutes per SKU <span title="3 image set" name="3 image set">[?]</span></p>
+                        <input type="number" min="0" id="skus-time" disabled class="times">
                     </div>
                 </div>
                 <div class="calc-body-parent-section">
@@ -55,10 +55,10 @@
                     </div>
                 </div>
                 <div class="calc-body-parent-section">
-                    <hr>
+                    <div class="hr"></div>
                 </div>
                 <div class="results-parent-section">
-                    <div class="results-child-section" id="shots-results">&nbsp;</div>
+                    <div class="results-child-section" id="skus-results">&nbsp;</div>
                     <div class="results-child-section" id="videos-results">&nbsp;</div>
                     <div class="results-child-section" id="three-sixties-results">&nbsp;</div>
                     <div class="results-child-section" id="total-results">&nbsp;</div>
