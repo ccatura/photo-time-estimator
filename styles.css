@@ -87,4 +87,32 @@ input[type=number] {
     border: 2px solid black;
     padding: 5px;
     box-shadow: 3px 3px 0 gray;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.not-link {
+    position: absolute;
+}
+
+.not-link:hover {
+    cursor: pointer;
+}
+
+#shots-info {
+    display: none;
+    position: relative;
+    top: -16px;
+    left: 150px;
+    font-size: 16px;
+    border: 2px solid black;
+    padding: 2px 5px;
+    background-color: cyan;
+    border-radius: 4px;
+    height: 25px;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, .7);
+}
+
+.not-link:hover ~ #shots-info {
+    display: block;
 }
