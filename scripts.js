@@ -53,12 +53,13 @@ calcBody.addEventListener('input', function() {
 
 
 function updateInfo() {
-    var skusTotalTime =        calcTime(skusNeeded.value * skusTime.value, skusTime.value);
-    var videosTotalTime =       calcTime(videosNeeded.value * videosTime.value, videosTime.value);
-    var threeSixtiesTotalTime = calcTime(threeSixtiesNeeded.value * threeSixtiesTime.value, threeSixtiesTime.value);
-    var allTimesAdded =         (skusNeeded.value * skusTime.value) + (videosNeeded.value * videosTime.value) + (threeSixtiesNeeded.value * threeSixtiesTime.value)
-    var totalTotalTime =        calcTime(allTimesAdded, 1)
+    var skusTotalTime =             calcTime(skusNeeded.value * skusTime.value, skusTime.value);
+    var videosTotalTime =           calcTime(videosNeeded.value * videosTime.value, videosTime.value);
+    var threeSixtiesTotalTime =     calcTime(threeSixtiesNeeded.value * threeSixtiesTime.value, threeSixtiesTime.value);
+    var allTimesAdded =             (skusNeeded.value * skusTime.value) + (videosNeeded.value * videosTime.value) + (threeSixtiesNeeded.value * threeSixtiesTime.value)
+    var totalTotalTime =            calcTime(allTimesAdded, 1)
 
+    // Shots times
     if(!(skusNeeded.value == 0) && !(skusTime.value == 0)) {
         skusResults.innerHTML = 'It will take ' + skusTotalTime + ' to shoot ' + (skusNeeded.value) + ' sku(s).';
         skusResults.style.display = 'block'
@@ -67,6 +68,7 @@ function updateInfo() {
         skusResults.style.display = 'none'
     }
 
+    // Video times
     if(!(videosNeeded.value == 0) && !(videosTime.value == 0)) {
         videosResults.innerHTML = 'It will take ' + videosTotalTime + ' to shoot ' + (videosNeeded.value) + ' video(s).';
         videosResults.style.display = 'block'
@@ -75,6 +77,7 @@ function updateInfo() {
         videosResults.style.display = 'none'
     }
 
+    //360 times
     if(!(threeSixtiesNeeded.value == 0) && !(threeSixtiesTime.value == 0)) {
         threeSixtiesResults.innerHTML = 'It will take ' + threeSixtiesTotalTime + ' to shoot ' + (threeSixtiesNeeded.value) + ' 360(s).';
         threeSixtiesResults.style.display = 'block'
@@ -83,6 +86,7 @@ function updateInfo() {
         threeSixtiesResults.style.display = 'none'
     }
 
+    // Total times
     if(!(skusNeeded.value == 0) || !(videosNeeded.value == 0) || !(threeSixtiesNeeded.value == 0)) {
         totalResults.innerHTML = 'It will take ' + totalTotalTime + ' to complete this project.';
     } else {
@@ -96,23 +100,29 @@ function calcTime(totalTime) {
     const workDaysPerWeek = 5;
     const myDay = myHour * workHoursPerDay;
     const myWeek = myDay * workDaysPerWeek;
+    var   totatlTimeWeekOnly;
+    var   totalTimeDaysMinusWeeks;
 
     if (totalTime < myHour) {
-        var segment = "minutes(s)";
+        var segment = totalTime.toFixed(1) + " minutes(s)";
     } else if (totalTime >= myHour && totalTime < myDay) {
-        var segment = "hours(s)";
         totalTime /= myHour;
+        var segment = totalTime.toFixed(1) + " hours(s)";
     } else if (totalTime >= myDay && totalTime < myWeek) {
-        var segment = "days(s)";
         totalTime /= myDay;
+        var segment = totalTime.toFixed(1) + " days(s)";
     } else if (totalTime >= myWeek) {
-        var segment = "weeks(s)";
+        var totalTimeX = totalTime;
+        var totalTimeY = totalTime;
+        totatlTimeWeekOnly = Math.floor(totalTimeX /= myWeek);
+        totalTimeDaysMinusWeeks = Math.ceil((totalTimeY /= myDay) - (totatlTimeWeekOnly * workDaysPerWeek)); // Gets remaining days after weeks are calculated (rounded up)
         totalTime /= myWeek;
+        var segment = totatlTimeWeekOnly + " weeks(s) and " + totalTimeDaysMinusWeeks + " day(s) ";
     }
 
 
-    totalTime = totalTime.toFixed(1);
-    return  totalTime + ' ' + segment;
+    // totalTime = totalTime.toFixed(1);
+    return  segment;
 }
 
 function setDefaultTimes() {
