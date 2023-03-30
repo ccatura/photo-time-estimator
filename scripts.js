@@ -1,17 +1,17 @@
-const shootingTimes = [35, 20, 20];
+const shootingTimes = [40, 30, 25]; // 1) Per Image  2) Per Video  4) Per 360
 const hour = 60;
 const day = 7.5 * hour;
 var timesOld = [];
 
 var defaults =              document.querySelector('#defaults');
 var times =                 document.querySelectorAll('.times');
-var skusNeeded =           document.querySelector('#skus-needed');
-var skusTime =             document.querySelector('#skus-time');
+var skusNeeded =            document.querySelector('#skus-needed');
+var skusTime =              document.querySelector('#skus-time');
 var videosNeeded =          document.querySelector('#videos-needed');
 var videosTime =            document.querySelector('#videos-time');
 var threeSixtiesNeeded =    document.querySelector('#three-sixties-needed');
 var threeSixtiesTime =      document.querySelector('#three-sixties-time');
-var skusResults =          document.querySelector('#skus-results');
+var skusResults =           document.querySelector('#skus-results');
 var videosResults =         document.querySelector('#videos-results');
 var threeSixtiesResults =   document.querySelector('#three-sixties-results');
 var totalResults =          document.querySelector('#total-results');
@@ -53,9 +53,9 @@ calcBody.addEventListener('input', function() {
 
 
 function updateInfo() {
-    var skusTotalTime =             calcTime(skusNeeded.value * skusTime.value, skusTime.value);
-    var videosTotalTime =           calcTime(videosNeeded.value * videosTime.value, videosTime.value);
-    var threeSixtiesTotalTime =     calcTime(threeSixtiesNeeded.value * threeSixtiesTime.value, threeSixtiesTime.value);
+    var skusTotalTime =             calcTime(skusNeeded.value, skusTime.value);
+    var videosTotalTime =           calcTime(videosNeeded.value, videosTime.value);
+    var threeSixtiesTotalTime =     calcTime(threeSixtiesNeeded.value, threeSixtiesTime.value);
     var allTimesAdded =             (skusNeeded.value * skusTime.value) + (videosNeeded.value * videosTime.value) + (threeSixtiesNeeded.value * threeSixtiesTime.value)
     var totalTotalTime =            calcTime(allTimesAdded, 1)
 
@@ -94,36 +94,47 @@ function updateInfo() {
     }
 }
 
-function calcTime(totalTime) {
-    const workHoursPerDay = 7;
-    const myHour = 60;
-    const workDaysPerWeek = 5;
-    const myDay = myHour * workHoursPerDay;
-    const myWeek = myDay * workDaysPerWeek;
-    var   totatlTimeWeekOnly;
-    var   totalTimeDaysMinusWeeks;
+function calcTime(unitsNeeded, unitTime) {
+    var   toReturn;
+    var   totalMinutes      = unitsNeeded * unitTime;
+    const minutesPerHour    = 60;
+    const hoursPerDay       = 7;
+    const daysPerWeek       = 5;
+    const minutesPerDay     = minutesPerHour * hoursPerDay;
+    const minutesPerWeek    = minutesPerDay * daysPerWeek;
+    var   totalHours        = totalMinutes / minutesPerHour;
+    var   leftOverMinutes;
+    var   leftOverHours;
 
-    if (totalTime < myHour) {
-        var segment = totalTime.toFixed(1) + " minutes(s)";
-    } else if (totalTime >= myHour && totalTime < myDay) {
-        totalTime /= myHour;
-        var segment = totalTime.toFixed(1) + " hours(s)";
-    } else if (totalTime >= myDay && totalTime < myWeek) {
-        totalTime /= myDay;
-        var segment = totalTime.toFixed(1) + " days(s)";
-    } else if (totalTime >= myWeek) {
-        var totalTimeX = totalTime;
-        var totalTimeY = totalTime;
-        totatlTimeWeekOnly = Math.floor(totalTimeX /= myWeek);
-        totalTimeDaysMinusWeeks = Math.ceil((totalTimeY /= myDay) - (totatlTimeWeekOnly * workDaysPerWeek)); // Gets remaining days after weeks are calculated (rounded up)
-        totalTime /= myWeek;
-        var segment = totatlTimeWeekOnly + " weeks(s) and " + totalTimeDaysMinusWeeks + " day(s) ";
+
+    if (totalMinutes <= minutesPerHour) {
+        toReturn =  totalMinutes + ' minutes';
+    }
+    else if (totalMinutes > minutesPerHour && totalMinutes < minutesPerDay) {
+        totalHours = Math.floor(totalMinutes / minutesPerHour);
+        leftOverMinutes = totalMinutes - (totalHours * minutesPerHour);
+        if (leftOverMinutes == 0) {
+            toReturn = totalHours + ' hours';
+        } else {
+            toReturn = totalHours + ' hours and ' + leftOverMinutes + ' minutes';
+        }
+    }
+    else if (totalMinutes > minutesPerDay && totalMinutes <= minutesPerWeek) {
+        totalDays = Math.floor(totalHours / hoursPerDay);
+        leftOverHours = Math.floor(totalHours - (hoursPerDay * totalDays));
+        if (leftOverHours == 0) {
+            toReturn = totalDays + ' days';
+        } else {
+            toReturn = totalDays + ' days and ' + leftOverHours + ' hours';
+        }
     }
 
 
     // totalTime = totalTime.toFixed(1);
-    return  segment;
+    return toReturn;
 }
+
+
 
 function setDefaultTimes() {
     for(var i=0;i<times.length;i++) {
