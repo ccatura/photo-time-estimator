@@ -1,4 +1,4 @@
-const shootingTimes = [40, 30, 25]; // 1) Per Image  2) Per Video  4) Per 360
+const shootingTimes = [40, 30, 30]; // 1) Per Image  2) Per Video  4) Per 360
 const hour = 60;
 const day = 7.5 * hour;
 var timesOld = [];
@@ -95,16 +95,17 @@ function updateInfo() {
 }
 
 function calcTime(unitsNeeded, unitTime) {
-    var   toReturn;
-    var   totalMinutes      = unitsNeeded * unitTime;
-    const minutesPerHour    = 60;
-    const hoursPerDay       = 7;
-    const daysPerWeek       = 5;
-    const minutesPerDay     = minutesPerHour * hoursPerDay;
-    const minutesPerWeek    = minutesPerDay * daysPerWeek;
-    var   totalHours        = totalMinutes / minutesPerHour;
-    var   leftOverMinutes;
-    var   leftOverHours;
+    var totalMinutes      = unitsNeeded * unitTime;
+    var minutesPerHour    = 60;
+    var hoursPerDay       = 7;
+    var daysPerWeek       = 5;
+    var minutesPerDay     = minutesPerHour * hoursPerDay;
+    var minutesPerWeek    = minutesPerDay * daysPerWeek;
+    var totalHours        = totalMinutes / minutesPerHour;
+    var totalDays         = Math.floor(totalHours / hoursPerDay);
+    var leftOverMinutes;
+    var leftOverHours;
+    var toReturn;
 
 
     if (totalMinutes <= minutesPerHour) {
@@ -119,13 +120,21 @@ function calcTime(unitsNeeded, unitTime) {
             toReturn = totalHours + ' hours and ' + leftOverMinutes + ' minutes';
         }
     }
-    else if (totalMinutes > minutesPerDay && totalMinutes <= minutesPerWeek) {
-        totalDays = Math.floor(totalHours / hoursPerDay);
+    else if (totalMinutes >= minutesPerDay && totalMinutes < minutesPerWeek) {
         leftOverHours = Math.floor(totalHours - (hoursPerDay * totalDays));
         if (leftOverHours == 0) {
             toReturn = totalDays + ' days';
         } else {
             toReturn = totalDays + ' days and ' + leftOverHours + ' hours';
+        }
+    }
+    else if (totalMinutes >= minutesPerWeek) {
+        totalWeeks = Math.floor(totalHours / (daysPerWeek * hoursPerDay));
+        leftOverDays = Math.floor(totalDays - (daysPerWeek * totalWeeks));
+        if (leftOverDays == 0) {
+            toReturn = totalWeeks + ' weeks';
+        } else {
+            toReturn = totalWeeks + ' weeks and ' + leftOverDays + ' days';
         }
     }
 
