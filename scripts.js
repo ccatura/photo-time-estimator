@@ -61,7 +61,7 @@ function updateInfo() {
 
     // Shots times
     if(!(skusNeeded.value == 0) && !(skusTime.value == 0)) {
-        skusResults.innerHTML = 'It will take ' + skusTotalTime + ' to shoot ' + (skusNeeded.value) + singularPluralTerm(skusNeeded.value, 'SKU');
+        skusResults.innerHTML = 'It will take ' + skusTotalTime + ' to shoot ' + (skusNeeded.value) + singularPluralTerm(skusNeeded.value, 'SKU') + '.';
         skusResults.style.display = 'block'
     } else {
         skusResults.innerHTML = '';
@@ -70,7 +70,7 @@ function updateInfo() {
 
     // Video times
     if(!(videosNeeded.value == 0) && !(videosTime.value == 0)) {
-        videosResults.innerHTML = 'It will take ' + videosTotalTime + ' to shoot ' + (videosNeeded.value) + singularPluralTerm(videosNeeded.value, 'video');
+        videosResults.innerHTML = 'It will take ' + videosTotalTime + ' to shoot ' + (videosNeeded.value) + singularPluralTerm(videosNeeded.value, 'video') + '.';
         videosResults.style.display = 'block'
     } else {
         videosResults.innerHTML = '';
@@ -79,7 +79,7 @@ function updateInfo() {
 
     //360 times
     if(!(threeSixtiesNeeded.value == 0) && !(threeSixtiesTime.value == 0)) {
-        threeSixtiesResults.innerHTML = 'It will take ' + threeSixtiesTotalTime + ' to shoot ' + (threeSixtiesNeeded.value) + singularPluralTerm(threeSixtiesNeeded.value, '360');
+        threeSixtiesResults.innerHTML = 'It will take ' + threeSixtiesTotalTime + ' to shoot ' + (threeSixtiesNeeded.value) + singularPluralTerm(threeSixtiesNeeded.value, '360') + '.';
         threeSixtiesResults.style.display = 'block'
     } else {
         threeSixtiesResults.innerHTML = '';
