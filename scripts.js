@@ -61,7 +61,7 @@ function updateInfo() {
 
     // Shots times
     if(!(skusNeeded.value == 0) && !(skusTime.value == 0)) {
-        skusResults.innerHTML = 'It will take ' + skusTotalTime + ' to shoot ' + (skusNeeded.value) + ' sku(s).';
+        skusResults.innerHTML = 'It will take ' + skusTotalTime + ' to shoot ' + (skusNeeded.value) + singularPluralTerm(skusNeeded.value, 'SKU');
         skusResults.style.display = 'block'
     } else {
         skusResults.innerHTML = '';
@@ -70,7 +70,7 @@ function updateInfo() {
 
     // Video times
     if(!(videosNeeded.value == 0) && !(videosTime.value == 0)) {
-        videosResults.innerHTML = 'It will take ' + videosTotalTime + ' to shoot ' + (videosNeeded.value) + ' video(s).';
+        videosResults.innerHTML = 'It will take ' + videosTotalTime + ' to shoot ' + (videosNeeded.value) + singularPluralTerm(videosNeeded.value, 'video');
         videosResults.style.display = 'block'
     } else {
         videosResults.innerHTML = '';
@@ -79,7 +79,7 @@ function updateInfo() {
 
     //360 times
     if(!(threeSixtiesNeeded.value == 0) && !(threeSixtiesTime.value == 0)) {
-        threeSixtiesResults.innerHTML = 'It will take ' + threeSixtiesTotalTime + ' to shoot ' + (threeSixtiesNeeded.value) + ' 360(s).';
+        threeSixtiesResults.innerHTML = 'It will take ' + threeSixtiesTotalTime + ' to shoot ' + (threeSixtiesNeeded.value) + singularPluralTerm(threeSixtiesNeeded.value, '360');
         threeSixtiesResults.style.display = 'block'
     } else {
         threeSixtiesResults.innerHTML = '';
@@ -105,45 +105,59 @@ function calcTime(unitsNeeded, unitTime) {
     var totalDays         = Math.floor(totalHours / hoursPerDay);
     var leftOverMinutes;
     var leftOverHours;
+    var minutesTerm;
+    var hoursTerm;
+    var daysTerm;
+    var weeksTerm;
     var toReturn;
 
 
     if (totalMinutes <= minutesPerHour) {
-        toReturn =  totalMinutes + ' minutes';
+        toReturn =  totalMinutes + singularPluralTerm(totalMinutes, 'minute');
     }
     else if (totalMinutes > minutesPerHour && totalMinutes < minutesPerDay) {
         totalHours = Math.floor(totalMinutes / minutesPerHour);
         leftOverMinutes = totalMinutes - (totalHours * minutesPerHour);
+        
         if (leftOverMinutes == 0) {
-            toReturn = totalHours + ' hours';
+            toReturn = totalHours + singularPluralTerm(totalHours, 'hour');
         } else {
-            toReturn = totalHours + ' hours and ' + leftOverMinutes + ' minutes';
+            toReturn = totalHours + singularPluralTerm(totalHours, 'hour'); + ' and ' + leftOverMinutes + singularPluralTerm(leftOverMinutes, 'minute');
         }
     }
     else if (totalMinutes >= minutesPerDay && totalMinutes < minutesPerWeek) {
         leftOverHours = Math.floor(totalHours - (hoursPerDay * totalDays));
+
         if (leftOverHours == 0) {
-            toReturn = totalDays + ' days';
+            toReturn = totalDays + singularPluralTerm(totalDays, 'day');
         } else {
-            toReturn = totalDays + ' days and ' + leftOverHours + ' hours';
+            toReturn = totalDays + singularPluralTerm(totalDays, 'day') + ' and ' + leftOverHours + singularPluralTerm(totalDays, 'hour');
         }
     }
     else if (totalMinutes >= minutesPerWeek) {
         totalWeeks = Math.floor(totalHours / (daysPerWeek * hoursPerDay));
         leftOverDays = Math.floor(totalDays - (daysPerWeek * totalWeeks));
+        daysTerm = (leftOverDays > 1 ? ' days' : ' day');
+        weeksTerm = (totalWeeks > 1 ? ' weeks' : ' week');
+
         if (leftOverDays == 0) {
-            toReturn = totalWeeks + ' weeks';
+            toReturn = totalWeeks + weeksTerm;
         } else {
-            toReturn = totalWeeks + ' weeks and ' + leftOverDays + ' days';
+            toReturn = totalWeeks + weeksTerm + ' and ' + leftOverDays + daysTerm;
         }
     }
 
 
     // totalTime = totalTime.toFixed(1);
     return toReturn;
+
+
 }
 
-
+function singularPluralTerm(num, singularTerm) {
+    var theTerm = (num > 1 ? singularTerm + 's': singularTerm);
+    return ' ' + theTerm;
+}
 
 function setDefaultTimes() {
     for(var i=0;i<times.length;i++) {
