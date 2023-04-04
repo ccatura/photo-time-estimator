@@ -101,7 +101,7 @@ input[type=number] {
 }
 
 #shots-info {
-    display: none;
+    opacity: 0;
     position: relative;
     top: -16px;
     left: 150px;
@@ -115,7 +115,7 @@ input[type=number] {
 }
 
 .not-link:hover ~ #shots-info {
-    display: block;
+    opacity: 1;
 }
 
 .keypad {
