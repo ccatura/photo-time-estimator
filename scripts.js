@@ -1,7 +1,7 @@
 const shootingTimes = [40, 30, 30]; // 1) Per Image  2) Per Video  4) Per 360
-const hour = 60;
-const day = 7.5 * hour;
-var timesOld = [];
+// const hour = 60;
+// const day = 7.5 * hour;
+// var timesOld = [];
 
 var defaults =              document.querySelector('#defaults');
 var times =                 document.querySelectorAll('.times');
@@ -16,6 +16,8 @@ var videosResults =         document.querySelector('#videos-results');
 var threeSixtiesResults =   document.querySelector('#three-sixties-results');
 var totalResults =          document.querySelector('#total-results');
 var calcBody =              document.querySelector('.calc-body');
+var resetButton =           document.querySelector('#reset');
+// var inputs =                document.getElementsByTagName('input');
 
 
 
@@ -39,7 +41,9 @@ calcBody.addEventListener('input', function() {
     updateInfo();
 });
 
-
+resetButton.addEventListener('click', function() {
+    location.reload()
+});
 
 
 
@@ -101,57 +105,43 @@ function calcTime(unitsNeeded, unitTime) {
     var daysPerWeek       = 5;
     var minutesPerDay     = minutesPerHour * hoursPerDay;
     var minutesPerWeek    = minutesPerDay * daysPerWeek;
-    var totalHours        = totalMinutes / minutesPerHour;
+    var totalHours        = Math.floor(totalMinutes / minutesPerHour);
     var totalDays         = Math.floor(totalHours / hoursPerDay);
+    var totalWeeks        = Math.floor(totalHours / (daysPerWeek * hoursPerDay));
     var leftOverMinutes;
     var leftOverHours;
-    var minutesTerm;
-    var hoursTerm;
-    var daysTerm;
-    var weeksTerm;
-    var toReturn;
 
-
+    /* MINUTES */
     if (totalMinutes <= minutesPerHour) {
-        toReturn =  totalMinutes + singularPluralTerm(totalMinutes, 'minute');
+        return  totalMinutes + singularPluralTerm(totalMinutes, 'minute');
     }
+    /* HOURS */
     else if (totalMinutes > minutesPerHour && totalMinutes < minutesPerDay) {
-        totalHours = Math.floor(totalMinutes / minutesPerHour);
         leftOverMinutes = totalMinutes - (totalHours * minutesPerHour);
-        
         if (leftOverMinutes == 0) {
-            toReturn = totalHours + singularPluralTerm(totalHours, 'hour');
+            return totalHours + singularPluralTerm(totalHours, 'hour');
         } else {
-            toReturn = totalHours + singularPluralTerm(totalHours, 'hour'); + ' and ' + leftOverMinutes + singularPluralTerm(leftOverMinutes, 'minute');
+            return totalHours + singularPluralTerm(totalHours, 'hour') + ' and ' + leftOverMinutes + singularPluralTerm(leftOverMinutes, 'minute');
         }
     }
+    /* DAYS */
     else if (totalMinutes >= minutesPerDay && totalMinutes < minutesPerWeek) {
         leftOverHours = Math.floor(totalHours - (hoursPerDay * totalDays));
-
         if (leftOverHours == 0) {
-            toReturn = totalDays + singularPluralTerm(totalDays, 'day');
+            return totalDays + singularPluralTerm(totalDays, 'day');
         } else {
-            toReturn = totalDays + singularPluralTerm(totalDays, 'day') + ' and ' + leftOverHours + singularPluralTerm(totalDays, 'hour');
+            return totalDays + singularPluralTerm(totalDays, 'day') + ' and ' + leftOverHours + singularPluralTerm(leftOverHours, 'hour');
         }
     }
+    /* WEEKS */
     else if (totalMinutes >= minutesPerWeek) {
-        totalWeeks = Math.floor(totalHours / (daysPerWeek * hoursPerDay));
         leftOverDays = Math.floor(totalDays - (daysPerWeek * totalWeeks));
-        daysTerm = (leftOverDays > 1 ? ' days' : ' day');
-        weeksTerm = (totalWeeks > 1 ? ' weeks' : ' week');
-
         if (leftOverDays == 0) {
-            toReturn = totalWeeks + weeksTerm;
+            return totalWeeks + singularPluralTerm(totalWeeks, 'week');
         } else {
-            toReturn = totalWeeks + weeksTerm + ' and ' + leftOverDays + daysTerm;
+            return totalWeeks + singularPluralTerm(totalWeeks, 'week') + ' and ' + leftOverDays + singularPluralTerm(leftOverDays, 'day');
         }
     }
-
-
-    // totalTime = totalTime.toFixed(1);
-    return toReturn;
-
-
 }
 
 function singularPluralTerm(num, singularTerm) {

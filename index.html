@@ -20,14 +20,17 @@
             <div class="calc-body">
                 <div class="calc-body-parent-section">
                     <div class="calc-body-child-section">
-                        <p>Use default times</p>
-                        <input type="checkbox" checked id="defaults">
+                        <div class="element-group">
+                            <input type="checkbox" checked id="defaults">
+                            <p style="margin-left: .5em;">Use defaults</p>
+                        </div>
+                        <button id="reset" class="action-button">Reset</button>
                     </div>
                 </div>
                 <div class="calc-body-parent-section">
                     <div class="calc-body-child-section">
                         <p>SKUs needed</p>
-                        <input type="number" min="0" id="skus-needed" value="0">
+                        <input type="number" min="0" id="skus-needed" value="0" onclick="this.select();">
                     </div>
                     <div class="calc-body-child-section">
                         <p class="not-link">Minutes per SKU [?]<div id="shots-info">3 image Set</div></p>
@@ -37,7 +40,7 @@
                 <div class="calc-body-parent-section">
                     <div class="calc-body-child-section">
                         <p>Videos needed</p>
-                        <input type="number" min="0" id="videos-needed" value="0">
+                        <input type="number" min="0" id="videos-needed" value="0"onclick="this.select();">
                     </div>
                     <div class="calc-body-child-section">
                         <p>Minutes per video</p>
@@ -47,7 +50,7 @@
                 <div class="calc-body-parent-section">
                     <div class="calc-body-child-section">
                         <p>360s needed</p>
-                        <input type="number" min="0" id="three-sixties-needed" value="0">
+                        <input type="number" min="0" id="three-sixties-needed" value="0"onclick="this.select();">
                     </div>
                     <div class="calc-body-child-section">
                         <p>Minutes per 360</p>
@@ -65,6 +68,36 @@
                 </div>
             </div>
         </div>
+
+        <div class="keypad">
+            <div class="keypad-words">
+                SKUs Needed
+            </div>
+            <div class="row">
+                <div class="button">7</div>
+                <div class="button">8</div>
+                <div class="button">9</div>
+            </div>
+            <div class="row">
+                <div class="button">4</div>
+                <div class="button">5</div>
+                <div class="button">6</div>
+            </div>
+            <div class="row">
+                <div class="button">1</div>
+                <div class="button">2</div>
+                <div class="button">3</div>
+            </div>
+            <div class="row">
+                <div class="button">&#9003;</div>
+                <div class="button">0</div>
+                <div class="button" style="font-size:14px;font-weight:bold;">ENTER</div>
+            </div>
+            <div class="keypad-words">
+                30
+            </div>
+        </div>
+
     </div>
     
 </body>
