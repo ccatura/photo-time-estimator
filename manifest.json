@@ -1,0 +1,10 @@
+{
+    "name": "Photo Time Estimator",
+    "short_name": "PTE",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "/apps/photo-time-estimator/",
+    "start_url": "/apps/photo-time-estimator/"
+  }

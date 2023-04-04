@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="./styles.css">
+    <link rel="manifest" href="./manifest.json">
     <script src="./scripts.js" defer></script>
 
     <title>Imaging Time Estimator</title>
@@ -33,14 +34,14 @@
                         <input type="number" min="0" id="skus-needed" value="0" onclick="this.select();">
                     </div>
                     <div class="calc-body-child-section">
-                        <p class="not-link">Minutes per SKU [?]<div id="shots-info">3 image Set</div></p>
+                        <p class="not-link">Minutes per SKU &#91;?&#93;<div id="shots-info">3 image Set</div></p>
                         <input type="number" min="0" id="skus-time" disabled class="times">
                     </div>
                 </div>
                 <div class="calc-body-parent-section">
                     <div class="calc-body-child-section">
                         <p>Videos needed</p>
-                        <input type="number" min="0" id="videos-needed" value="0"onclick="this.select();">
+                        <input type="number" min="0" id="videos-needed" value="0" onclick="this.select();">
                     </div>
                     <div class="calc-body-child-section">
                         <p>Minutes per video</p>
@@ -50,7 +51,7 @@
                 <div class="calc-body-parent-section">
                     <div class="calc-body-child-section">
                         <p>360s needed</p>
-                        <input type="number" min="0" id="three-sixties-needed" value="0"onclick="this.select();">
+                        <input type="number" min="0" id="three-sixties-needed" value="0" onclick="this.select();">
                     </div>
                     <div class="calc-body-child-section">
                         <p>Minutes per 360</p>
