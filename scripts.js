@@ -17,8 +17,6 @@ var threeSixtiesResults =   document.querySelector('#three-sixties-results');
 var totalResults =          document.querySelector('#total-results');
 var calcBody =              document.querySelector('.calc-body');
 var resetButton =           document.querySelector('#reset');
-// var inputs =                document.getElementsByTagName('input');
-
 
 
 setDefaultTimes();
