@@ -10,7 +10,7 @@ if(isset($_POST['submit']))
     $sql = "UPDATE `time_defaults` SET `sku_time`='$sku_time',`video_time`='$video_time',`ts_time`='$ts_time' WHERE 1";
 
     if (mysqli_query($conn, $sql)) {
-      echo "< style='font-size:24px;'>";
+      echo "<div style='font-size:24px;'>";
       echo "SKU time:   " . $sku_time . " minute(s)<br>";
       echo "Video time: " . $video_time . " minute(s)<br>";
       echo "360 time:   " . $ts_time . " minute(s)<br><br>";
