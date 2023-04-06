@@ -11,7 +11,7 @@ if(isset($_POST['submit']))
 
     if (mysqli_query($conn, $sql)) {
        echo "New record has been added successfully !";
-       echo "<a href="./">Go to app</a>";
+       echo "<a href='./'>Go to app</a>";
     } else {
        echo "Error: " . $sql . ":-" . mysqli_error($conn);
     }
