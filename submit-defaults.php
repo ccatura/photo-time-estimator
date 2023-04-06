@@ -15,7 +15,8 @@ if(isset($_POST['submit']))
       echo "Video time: " . $video_time . " minute(s)<br>";
       echo "360 time:   " . $ts_time . " minute(s)<br><br>";
       echo "Times have been added successfully!<br><br>";
-      echo "<a href='./'>Go back to app</a></div>";
+      echo "<a href='./defaults.php'>Go back to defaults.</a></div>";
+      echo "<a href='./'>Go back to Photo Times Estimator app.</a></div>";
     } else {
        echo "Error: " . $sql . ":-" . mysqli_error($conn);
     }
