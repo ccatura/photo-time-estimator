@@ -1,3 +1,3 @@
 <?php
-    $password = "skjdfh4985yuh*$HJ";
+    $password = "kjhfkjdsf89345793845()HJK";
 ?>
