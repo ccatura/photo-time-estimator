@@ -7,9 +7,7 @@ if(isset($_POST['submit']))
     $video_time = $_POST['video_time'];
     $ts_time = $_POST['ts_time'];
 
-    $sql = "
-    INSERT INTO `time_defaults` (`sku_time`, `video_time`, `ts_time`)
-    VALUES ('$sku_time', '$video_time', '$ts_time')";
+    $sql = "UPDATE `time_defaults` SET `sku_time`='$sku_time',`video_time`='$video_time',`ts_time`='$ts_time' WHERE 1";
 
     if (mysqli_query($conn, $sql)) {
        echo "New record has been added successfully !";
