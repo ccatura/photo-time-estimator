@@ -19,13 +19,13 @@ var calcBody =              document.querySelector('.calc-body');
 var resetButton =           document.querySelector('#reset');
 
 
-setDefaultTimes();
+// setDefaultTimes();
 
 defaults.addEventListener('change', function() {
     if (defaults.checked) {
         for(var i=0;i<times.length;i++) {
             times[i].disabled = true;
-            setDefaultTimes();
+            // setDefaultTimes();
             updateInfo();
         }
     } else {

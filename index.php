@@ -1,12 +1,7 @@
 <?php
 include_once 'db.php';
-	$result = mysqli_query($conn,"SELECT * FROM `default_times`;");
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "
-         SKU:   " . $row['sku_time'] . "<br>" .
-        "Video: " . $row['sku_time'] . "<br>" .
-        "360:   " . $row['sku_time'] . "<br>";
-    }
+	$result = mysqli_query($conn,"SELECT * FROM `time_defaults`;");
+    $row = mysqli_fetch_assoc($result);
 ?>
 
 
@@ -47,7 +42,7 @@ include_once 'db.php';
                     </div>
                     <div class="calc-body-child-section">
                         <p class="not-link">Minutes per SKU &#91;?&#93;</p><div id="shots-info">3 image Set</div>
-                        <input type="number" min="0" id="skus-time" disabled class="times">
+                        <input type="number" min="0" id="skus-time" disabled class="times" value="<?php echo $row['sku_time'] ?>">
                     </div>
                 </div>
                 <div class="calc-body-parent-section">
@@ -57,7 +52,7 @@ include_once 'db.php';
                     </div>
                     <div class="calc-body-child-section">
                         <p>Minutes per video</p>
-                        <input type="number" min="0" id="videos-time" disabled class="times">
+                        <input type="number" min="0" id="videos-time" disabled class="times" value="<?php echo $row['video_time'] ?>">
                     </div>
                 </div>
                 <div class="calc-body-parent-section">
@@ -67,7 +62,7 @@ include_once 'db.php';
                     </div>
                     <div class="calc-body-child-section">
                         <p>Minutes per 360</p>
-                        <input type="number" min="0" id="three-sixties-time" disabled class="times">
+                        <input type="number" min="0" id="three-sixties-time" disabled class="times" value="<?php echo $row['ts_time'] ?>">
                     </div>
                 </div>
                 <div class="calc-body-parent-section">

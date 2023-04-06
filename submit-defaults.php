@@ -10,8 +10,12 @@ if(isset($_POST['submit']))
     $sql = "UPDATE `time_defaults` SET `sku_time`='$sku_time',`video_time`='$video_time',`ts_time`='$ts_time' WHERE 1";
 
     if (mysqli_query($conn, $sql)) {
-       echo "New record has been added successfully!<br><br>";
-       echo "<a href='./'>Go back to app</a>";
+      echo "<div style='font-size:24px;'>";
+      echo "SKU time:   " . $sku_time . " minute(s)";
+      echo "Video time: " . $video_time . " minute(s)";
+      echo "360 time:   " . $ts_time . " minute(s)";
+      echo "Times have been added successfully!<br><br>";
+      echo "<a href='./'>Go back to app</a></div>";
     } else {
        echo "Error: " . $sql . ":-" . mysqli_error($conn);
     }
