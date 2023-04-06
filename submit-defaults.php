@@ -11,9 +11,9 @@ if(isset($_POST['submit']))
 
     if (mysqli_query($conn, $sql)) {
       echo "<div style='font-size:24px;'>";
-      echo "SKU time:   " . $sku_time . " minute(s)";
-      echo "Video time: " . $video_time . " minute(s)";
-      echo "360 time:   " . $ts_time . " minute(s)";
+      echo "SKU time:   " . $sku_time . " minute(s)<br>";
+      echo "Video time: " . $video_time . " minute(s)<br>";
+      echo "360 time:   " . $ts_time . " minute(s)<br><br>";
       echo "Times have been added successfully!<br><br>";
       echo "<a href='./'>Go back to app</a></div>";
     } else {
