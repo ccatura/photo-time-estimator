@@ -7,7 +7,7 @@ if(isset($_POST['submit']))
     $video_time = $_POST['video_time'];
     $ts_time = $_POST['ts_time'];
 
-    $sql = "REPLACE INTO `time_defaults` (`sku_time`, `video_time`, `ts_time`)
+    $sql = "INSERT OVERWRITE INTO `time_defaults` (`sku_time`, `video_time`, `ts_time`)
     VALUES ('$sku_time', '$video_time', '$ts_time')";
 
     if (mysqli_query($conn, $sql)) {
