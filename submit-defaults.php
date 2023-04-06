@@ -7,7 +7,7 @@ if(isset($_POST['submit']))
     $video_time = $_POST['video_time'];
     $ts_time = $_POST['ts_time'];
 
-    $sql = "DELETE FROM `time_defaults`
+    $sql = "TRUNCATE FROM `time_defaults`
     INSERT INTO `time_defaults` (`sku_time`, `video_time`, `ts_time`)
     VALUES ('$sku_time', '$video_time', '$ts_time')";
 
