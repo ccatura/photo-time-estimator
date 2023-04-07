@@ -1,11 +1,11 @@
 const shootingTimes = [40, 30, 30]; // 1) Per Image  2) Per Video  4) Per 360
 
 var defaults =              document.querySelector('#defaults');
-var defaultTime =           defaults.getAttribute('defaulttimes');
-
-console.log(defaultTime);
-
 var times =                 document.querySelectorAll('.times');
+
+// fix this later to be a for loop
+var defaultTime =           [times[0].getAttribute('defaulttime'), times[1].getAttribute('defaulttime'), times[2].getAttribute('defaulttime')];
+
 var skusNeeded =            document.querySelector('#skus-needed');
 var skusTime =              document.querySelector('#skus-time');
 var videosNeeded =          document.querySelector('#videos-needed');
@@ -26,7 +26,7 @@ defaults.addEventListener('change', function() {
     if (defaults.checked) {
         for(var i=0;i<times.length;i++) {
             times[i].disabled = true;
-            // setDefaultTimes();
+            setDefaultTimes();
             updateInfo();
         }
     } else {
@@ -151,6 +151,6 @@ function singularPluralTerm(num, singularTerm) {
 function setDefaultTimes() {
     // IN HERE: THIS NEEDS TO TAKE THE ATTRIBUTE (defaulttime) IN THE HTML INPUT TAG AND REPLACE THE VALUE WITH THAT
     for(var i=0;i<times.length;i++) {
-        times[i].value = shootingTimes[i];
+        times[i].value = defaultTime[i];
     } 
 }
