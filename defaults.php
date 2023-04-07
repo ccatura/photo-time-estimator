@@ -41,6 +41,7 @@
         </div>
     </form>
 
+    <a href='./index.php'>Go back to Photo Times Estimator app.</a></div>
 
 
 </body>

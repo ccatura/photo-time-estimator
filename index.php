@@ -42,7 +42,7 @@ include_once 'db.php';
                     </div>
                     <div class="calc-body-child-section">
                         <p class="not-link">Minutes per SKU &#91;?&#93;</p><div id="shots-info">3 image Set</div>
-                        <input type="number" min="0" id="skus-time" disabled class="times" value="<?php echo $row['sku_time'] ?>">
+                        <input type="number" min="0" id="skus-time" disabled class="times" value="<?php echo $row['sku_time'] ?>" defaulttime="<?php echo $row['sku_time'] ?>">
                     </div>
                 </div>
                 <div class="calc-body-parent-section">
@@ -52,7 +52,7 @@ include_once 'db.php';
                     </div>
                     <div class="calc-body-child-section">
                         <p>Minutes per video</p>
-                        <input type="number" min="0" id="videos-time" disabled class="times" value="<?php echo $row['video_time'] ?>">
+                        <input type="number" min="0" id="videos-time" disabled class="times" value="<?php echo $row['video_time'] ?>" defaulttime="<?php echo $row['sku_time'] ?>">
                     </div>
                 </div>
                 <div class="calc-body-parent-section">
@@ -62,7 +62,7 @@ include_once 'db.php';
                     </div>
                     <div class="calc-body-child-section">
                         <p>Minutes per 360</p>
-                        <input type="number" min="0" id="three-sixties-time" disabled class="times" value="<?php echo $row['ts_time'] ?>">
+                        <input type="number" min="0" id="three-sixties-time" disabled class="times" value="<?php echo $row['ts_time'] ?>" defaulttime="<?php echo $row['sku_time'] ?>">
                     </div>
                 </div>
                 <div class="calc-body-parent-section">
