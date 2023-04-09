@@ -105,6 +105,7 @@ include_once 'db.php';
                 30
             </div>
         </div>
+        <a href="./defaults.php" style="font-size:10px;text-decoration:none;color:black;">[EDIT DEFAULT TIMES]</a>
 
     </div>
     

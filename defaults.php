@@ -41,7 +41,7 @@
         </div>
     </form>
 
-    <a href='./index.php'>Go back to Photo Times Estimator app.</a></div>
+    <a href='./index.php' style="margin-top:1em;font-size:14px;">Go back to Photo Time Estimator</a></div>
 
 
 </body>
