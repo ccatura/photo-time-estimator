@@ -30,9 +30,14 @@ include_once 'db.php';
                     <div class="calc-body-child-section">
                         <div class="element-group">
                             <input type="checkbox" checked id="defaults">
-                            <label style="margin-left: .5em;" for="defaults">Use defaults</label>
+                            <label style="margin-left: .2em; font-size: 13px;" for="defaults">Defaults</label>
                         </div>
-                        <button id="reset" class="action-button">Reset</button>
+                        <div class="element-group">
+                            <input type="checkbox" unchecked id="difficult" value="<?php echo $row['difficult_time'] ?>">
+                            <label style="margin-left: .2em; font-size: 13px;" for="difficult">Difficult (+<?php echo $row['difficult_time'] ?> min./image)</label>
+                            <input type="hidden" id="difficult-hidden" value="<?php echo $row['difficult_time'] ?>">
+                        </div>
+                        <button style="width: 60px;" id="reset" class="action-button">Reset</button>
                     </div>
                 </div>
                 <div class="calc-body-parent-section">

@@ -31,14 +31,16 @@
     include_once('db.php');
 	$result = mysqli_query($conn,"SELECT * FROM `time_defaults`;");
     $row = mysqli_fetch_assoc($result);
-    $sku_time = $row['sku_time'];
-    $video_time = $row['video_time'];
-    $ts_time = $row['ts_time'];
+    $sku_time       = $row['sku_time'];
+    $video_time     = $row['video_time'];
+    $ts_time        = $row['ts_time'];
+    $difficult_time = $row['difficult_time'];
 ?>
 
 
     <form action="submit-defaults.php" method="post">
         <div>
+            <h2>Enter Time in Minutes</h2><br>
             <div class="section"><p>Single SKU, 3 Image Set</p>
                 <input name="sku_time" type="number" min="0" value="<?php echo $sku_time ?>" required>
             </div>
@@ -47,6 +49,9 @@
             </div>
             <div class="section"><p>Regualr 360</p>
                 <input name="ts_time" type="number" min="0" value="<?php echo $ts_time ?>" required>
+            </div>
+            <div class="section"><p>Difficulty Offset</p>
+                <input name="difficult_time" type="number" min="0" value="<?php echo $difficult_time ?>" required>
             </div>
             <button name="submit">Submit</button>
         </div>

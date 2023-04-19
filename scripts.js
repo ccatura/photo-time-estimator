@@ -18,18 +18,34 @@ var threeSixtiesResults =   document.querySelector('#three-sixties-results');
 var totalResults =          document.querySelector('#total-results');
 var calcBody =              document.querySelector('.calc-body');
 var resetButton =           document.querySelector('#reset');
+var difficultCheckBox =     document.getElementById('difficult');
+var difficultValue =        difficultCheckBox.value;
 
 
 // setDefaultTimes();
 
+difficultCheckBox.addEventListener('change', function() {
+    var difficultHidden = document.getElementById('difficult-hidden').value;
+    if (this.checked && defaults.checked) {
+        skusTime.value = parseInt(skusTime.value) + parseInt(difficultHidden);
+        updateInfo();
+    } else if (!this.checked && defaults.checked) {
+        skusTime.value = parseInt(skusTime.value) - parseInt(difficultHidden);
+        updateInfo();
+    }
+});
+
 defaults.addEventListener('change', function() {
-    if (defaults.checked) {
+    difficultCheckBox.checked = false;
+    if (this.checked) {
+        difficultCheckBox.disabled = false;
         for(var i=0;i<times.length;i++) {
             times[i].disabled = true;
             setDefaultTimes();
             updateInfo();
         }
     } else {
+        difficultCheckBox.disabled = true;
         for(i=0;i<times.length;i++) {
             times[i].disabled = false;
         }
@@ -52,15 +68,15 @@ resetButton.addEventListener('click', function() {
 
 
 
-
+``
 
 
 function updateInfo() {
-    var skusTotalTime =             calcTime(skusNeeded.value, skusTime.value);
-    var videosTotalTime =           calcTime(videosNeeded.value, videosTime.value);
-    var threeSixtiesTotalTime =     calcTime(threeSixtiesNeeded.value, threeSixtiesTime.value);
+    var skusTotalTime =             calcTime(skusNeeded.value, skusTime.value, true);
+    var videosTotalTime =           calcTime(videosNeeded.value, videosTime.value, false);
+    var threeSixtiesTotalTime =     calcTime(threeSixtiesNeeded.value, threeSixtiesTime.value, false);
     var allTimesAdded =             (skusNeeded.value * skusTime.value) + (videosNeeded.value * videosTime.value) + (threeSixtiesNeeded.value * threeSixtiesTime.value)
-    var totalTotalTime =            calcTime(allTimesAdded, 1)
+    var totalTotalTime =            calcTime(allTimesAdded, 1, true)
 
     // Shots times
     if(!(skusNeeded.value == 0) && !(skusTime.value == 0)) {
@@ -97,16 +113,19 @@ function updateInfo() {
     }
 }
 
-function calcTime(unitsNeeded, unitTime) {
-    var totalMinutes      = unitsNeeded * unitTime;
-    var minutesPerHour    = 60;
-    var hoursPerDay       = 7;
-    var daysPerWeek       = 5;
-    var minutesPerDay     = minutesPerHour * hoursPerDay;
-    var minutesPerWeek    = minutesPerDay * daysPerWeek;
-    var totalHours        = Math.floor(totalMinutes / minutesPerHour);
-    var totalDays         = Math.floor(totalHours / hoursPerDay);
-    var totalWeeks        = Math.floor(totalHours / (daysPerWeek * hoursPerDay));
+function calcTime(unitsNeeded, unitTime, calcDiff) {
+    var difficult = document.getElementById('difficult');
+    // if (difficult.checked && calcDiff) unitTime = parseInt(unitTime) + parseInt(difficultValue);
+
+    var totalMinutes        = unitsNeeded * unitTime;
+    var minutesPerHour      = 60;
+    var hoursPerDay         = 7;
+    var daysPerWeek         = 5;
+    var minutesPerDay       = minutesPerHour * hoursPerDay;
+    var minutesPerWeek      = minutesPerDay * daysPerWeek;
+    var totalHours          = Math.floor(totalMinutes / minutesPerHour);
+    var totalDays           = Math.floor(totalHours / hoursPerDay);
+    var totalWeeks          = Math.floor(totalHours / (daysPerWeek * hoursPerDay));
     var leftOverMinutes;
     var leftOverHours;
 
