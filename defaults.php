@@ -41,16 +41,16 @@
     <form action="submit-defaults.php" method="post">
         <div>
             <h2>Enter Time in Minutes</h2><br>
-            <div class="section"><p>Single SKU, 3 Image Set</p>
+            <div class="section"><p>Single SKU, 3 Image Set <em style="font-size:small;">(Original Default: 40)</em></p>
                 <input name="sku_time" type="number" min="0" value="<?php echo $sku_time ?>" required>
             </div>
-            <div class="section"><p>Video 360</p>
+            <div class="section"><p>Video 360 <em style="font-size:small;">(Original Default: 25)</em></p>
                 <input name="video_time" type="number" min="0" value="<?php echo $video_time ?>" required>
             </div>
-            <div class="section"><p>Regualr 360</p>
+            <div class="section"><p>Regular 360 <em style="font-size:small;">(Original Default: 30)</em></p>
                 <input name="ts_time" type="number" min="0" value="<?php echo $ts_time ?>" required>
             </div>
-            <div class="section"><p>Difficulty Offset</p>
+            <div class="section"><p>Difficulty Offset <em style="font-size:small;">(Original Default: 8)</em></p>
                 <input name="difficult_time" type="number" min="0" value="<?php echo $difficult_time ?>" required>
             </div>
             <button name="submit">Submit</button>
